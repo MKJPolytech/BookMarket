@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BookRepository {
     List<Book> getAllBookList();
+    Book getBookById(String id);
 }

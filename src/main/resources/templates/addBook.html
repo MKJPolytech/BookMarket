@@ -34,7 +34,7 @@
         </div>
 
         <div class="row align-items-md-stretch">
-            <form action="/BookMarket/books/add" method="post">
+            <form action="/BookMarket/books/add" method="post" enctype="multipart/form-data">
                 <legend th:text="${addTitle}">신규 도서 등록</legend>
                 <div class="mb-3 row">
                     <label class="col-sm-2 control-label">도서 ID</label>
@@ -105,8 +105,12 @@
                 </div>
             </form>
         </div>
-
-
+        <div class="mb-3 row">
+            <label class="col-sm-2 control-label">도서 이미지</label>
+            <div class="col-sm-7">
+                <input type="file" name="bookImage" class="form-control"/>
+            </div>
+        </div>
 
         <footer class="pt-3 mt-4 text-body-secondary border-top">
             <span class="text-body-secondary">&copy; 2025 BookMarket</span>

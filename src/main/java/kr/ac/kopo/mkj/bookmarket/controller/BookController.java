@@ -1,12 +1,14 @@
 package kr.ac.kopo.mkj.bookmarket.controller;
 
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import kr.ac.kopo.mkj.bookmarket.domain.Book;
 import kr.ac.kopo.mkj.bookmarket.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -65,25 +67,28 @@ public class BookController {
     }
 
     @GetMapping("/add")
-    public String requestAddBookForm() {
+    public String requestAddBookForm(Model model) {
+        model.addAttribute("book", new Book());
         return "addBook";
     }
 
     @PostMapping("/add")
-    public String requestSubmitNewBook(@ModelAttribute("book") Book book) {
+    public String requestSubmitNewBook(@Valid @ModelAttribute("book") Book book, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "addBook";
+        }
         MultipartFile bookImage = book.getBookImage();
         String saveName = bookImage.getOriginalFilename();
         File saveFile = new File(fileDir + saveName);
         if(bookImage != null && !bookImage.isEmpty()) {
+            try {
+                bookImage.transferTo(saveFile);
+            } catch (IOException e) {
+                throw new RuntimeException("도서 이미지 업로드가 되지 않았습니다.");
+            }
 
-        }
-        try {
-            bookImage.transferTo(saveFile);
-        } catch (IOException e) {
-            throw new RuntimeException("도서 이미지 업로드가 되지 않았습니다.");
         }
         book.setFileName(saveName);
-
         bookService.setNewBook(book);
         return "redirect:/books";
     }

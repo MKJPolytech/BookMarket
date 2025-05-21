@@ -25,7 +25,6 @@ public class BookValidator implements Validator {
         this.springValidators = springValidators;
     }
 
-
     @Override
     public boolean supports(Class<?> clazz) {
         return Book.class.isAssignableFrom(clazz);

@@ -1,11 +1,11 @@
 package kr.ac.kopo.mkj.bookmarket.validator;
 
-import jakarta.validation.ConstraintViolation;
 import kr.ac.kopo.mkj.bookmarket.domain.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
+import jakarta.validation.ConstraintViolation;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -24,6 +24,7 @@ public class BookValidator implements Validator {
     public void setSpringValidators(Set<Validator> springValidators){
         this.springValidators = springValidators;
     }
+
 
     @Override
     public boolean supports(Class<?> clazz) {

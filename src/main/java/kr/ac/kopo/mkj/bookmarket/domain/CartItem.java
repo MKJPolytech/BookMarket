@@ -24,7 +24,7 @@ public class CartItem {
     }
 
     public void setQuantity(int quantity) {
-        this.book = book;
+        this.quantity = quantity;
         updateTotalPrice();
     }
 

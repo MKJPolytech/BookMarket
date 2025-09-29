@@ -7,40 +7,43 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Repository
-public class CartRepositoryImpl implements CartRepository {
-    private Map<String, Cart> listofCarts;
+public class CartRepositoryImpl implements CartRepository{
+	
+	private Map<String, Cart> listOfCarts;
+	
 
-    public CartRepositoryImpl() {
-        listofCarts = new HashMap<String, Cart>();
-    }
+	public CartRepositoryImpl() {
+		listOfCarts = new HashMap<String,Cart>();		
+	}
+	
+	
+	public Cart create(Cart cart) {
+		if(listOfCarts.containsKey(cart.getCartId())) {
+			throw new IllegalArgumentException(String.format("장바구니를 생성할 수 없습니다. 장바구니 id(%s)가 존재합니다",	cart.getCartId()));
+		}
 
-    @Override
-    public Cart create(Cart cart) {
-        if (listofCarts.containsKey(cart.getCartId())){
-            throw new IllegalArgumentException("장바구니를 새로 생성할 수 없습니다. 현재 장바구니 ID(" +cart.getCartId() + ")가 이미 존재합니다.");
-        }
-        listofCarts.put(cart.getCartId(), cart);
-        return cart;
-    }
+		listOfCarts.put(cart.getCartId(), cart);
+		return cart;
+	}
+	
+	
+	public Cart read(String cartId) {
+		return listOfCarts.get(cartId);
+	}
+	
+	public void update(String cartId, Cart cart) {
+		if(!listOfCarts.containsKey(cartId)) {
+			throw new IllegalArgumentException(String.format("장바구니 목록을 갱신할 수 없습니다. 장바구니 id(%s)가 존재하지 않습니다",cartId));
+		}
+		listOfCarts.put(cartId, cart);
+		System.out.println("장바구니  "+  cart);
+	}
 
-    public void update(String cartId, Cart cart) {
-        if (listofCarts.containsKey(cartId)) {
-            throw new IllegalArgumentException("장바구니 목록을 업데이트할 수 없습니다. 장바구니가 존재하지 않습니다.");
-        }
-        listofCarts.put(cartId, cart);
-    }
-
-    @Override
-    public void delete(String cartId) {
-        if(!listofCarts.containsKey(cartId)){
-            throw new IllegalArgumentException("장바구니 목록을 업데이트할 수 없습니다. 장바구니가 존재하지 않습니다.");
-        }
-        listofCarts.remove(cartId);
-    }
-
-    @Override
-    public Cart read(String cartId) {
-        return listofCarts.get(cartId);
-    }
+	 public void delete(String cartId) {
+	       if(!listOfCarts.keySet().contains(cartId)) {
+	         throw new IllegalArgumentException(String.format("장바구니 목록을 삭제할 수 없습니다. 장바구니 id(%)가 존재하지 않습니다",cartId));
+	       }
+	       listOfCarts.remove(cartId);
+	   }
 
 }

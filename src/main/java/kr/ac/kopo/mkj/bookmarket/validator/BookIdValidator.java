@@ -1,34 +1,36 @@
 package kr.ac.kopo.mkj.bookmarket.validator;
 
-import jakarta.validation.ConstraintValidator;
-import jakarta.validation.ConstraintValidatorContext;
-import kr.ac.kopo.mkj.bookmarket.domain.Book;
-import kr.ac.kopo.mkj.bookmarket.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import kr.ac.kopo.mkj.bookmarket.domain.Book;
+import kr.ac.kopo.mkj.bookmarket.service.BookService;
 
-public class BookIdValidator  implements ConstraintValidator<BookId, String> {
-    @Autowired
-    private BookService bookService;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
-    @Override
-    public void initialize(BookId constraintAnnotation) {
-        ConstraintValidator.super.initialize(constraintAnnotation);
-    }
+public class BookIdValidator implements ConstraintValidator<BookId, String>{
 
-    @Override
-    public boolean isValid(String value, ConstraintValidatorContext context) {
-        Book book = null;
-        try {
-            book = bookService.getBookById(value);
-        }catch (RuntimeException e){
-            return true;
-        }
+	@Autowired
+	private BookService bookService;
+	   
+	
+	@Override
+	public void initialize(BookId constraintAnnotation) {
+		// TODO Auto-generated method stub
+		ConstraintValidator.super.initialize(constraintAnnotation);
+	}
 
-        if(book != null){
-            return false;
-        }
-
-        return true;
-    }
+	@Override
+	public boolean isValid(String value, ConstraintValidatorContext context) {
+		  Book book;
+	      try {
+	         book = bookService.getBookById(value);
+	      } catch (RuntimeException e) {	    	  
+	         return true;
+	      }
+	      if(book!= null) {
+	         return false;
+	      }
+	      return true;	   
+	}
 }

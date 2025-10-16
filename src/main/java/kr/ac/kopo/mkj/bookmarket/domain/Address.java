@@ -1,8 +1,7 @@
-package kr.ac.kopo.kkssmm.bookmarket.domain;
+package kr.ac.kopo.mkj.bookmarket.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
 

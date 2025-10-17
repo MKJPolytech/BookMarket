@@ -45,7 +45,7 @@
                     <h3 th:text="${book.getName()}"></h3>
                     <p th:text="${book.getDescription()}"></p>
                     <br>
-                    <p><b>도서코드: </b><span th:text="${book.getBookID()}" class="badge text-bg-info"></span></p>
+                    <p><b>도서코드: </b><span th:text="${book.bookId}" class="badge text-bg-info"></span></p>
                     <p><b>도서저자: </b><span th:text="${book.getAuthor()}"></span></p>
                     <p><b>도서출판사: </b><span th:text="${book.getPublisher()}"></span></p>
                     <p><b>도서출판일: </b><span th:text="${book.getReleaseDate()}"></span></p>
@@ -56,7 +56,7 @@
                     <p>
                     <form name="addForm" id="addForm" method="post">
                         <input type="hidden" name="_method" value="put"/>
-                        <a th:href="'javascript:addToCart(\''+ ${book.getBookID()} +'\')'" class="btn btn-primary">도서 주문 &raquo;</a>
+                        <a th:href="'javascript:addToCart(\''+ ${book.bookId} +'\')'" class="btn btn-primary">도서 주문 &raquo;</a>
                         <a href="/BookMarket/cart" class="btn btn-warning" role="button">장바구니 &raquo;</a>
                         <a href="/BookMarket/books" class="btn btn-secondary" role="button">도서목록 &raquo;</a>
                     </form>

@@ -1,45 +1,39 @@
 package kr.ac.kopo.mkj.bookmarket.service;
 
 import kr.ac.kopo.mkj.bookmarket.domain.Cart;
+import kr.ac.kopo.mkj.bookmarket.exception.CartException;
 import kr.ac.kopo.mkj.bookmarket.repository.CartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import kr.ac.kopo.mkj.bookmarket.exception.cartException;
 
 @Service
-public class CartServiceImpl implements CartService {
-    @Autowired
-    private CartRepository cartRepository;
+public class CartServiceImpl implements CartService{
+	
+	@Autowired
+	private CartRepository cartRepository;
 
-    @Override
-    public Cart create(Cart cart) {
-        return cartRepository.create(cart);
-    }
+	public Cart create(Cart cart) {
+		return cartRepository.create(cart);
+	}
 
-    @Override
-    public Cart read(String cartId) {
-        return cartRepository.read(cartId);
-    }
+	public Cart read(String cartId) {
+		return cartRepository.read(cartId);
+	}
+	
+	public void update(String cartId, Cart cart) {
+		cartRepository.update(cartId, cart);
+	}
 
-    @Override
-    public void update(String cartId, Cart cart) {
-        cartRepository.update(cartId, cart);
-    }
+	public void delete(String cartId) {
+	      cartRepository.delete(cartId);
+	}
 
-    @Override
-    public void delete(String cartId) {
-        cartRepository.delete(cartId);
-    }
-
-    @Override
-    public Cart validateCart(String cartId) {
-        Cart cart = cartRepository.read(cartId);
-        if (cart == null) {
-            throw new cartException("Cart(" + cartId + ") does not exist");
-        }
-        if (cart.getCartItems() == null || cart.getCartItems().isEmpty()) {
-            throw new cartException("Cart(" + cartId + ") is empty");
-        }
-        return cart;
-    }
+	@Override
+	public Cart validateCart(String cartId) {
+		Cart cart = cartRepository.read(cartId);
+		if (cart == null || cart.getCartItems().size() == 0) {
+			throw new CartException(cartId);
+		}
+		return cart;
+	}
 }

@@ -1,17 +1,40 @@
-// src/main/java/.../service/OrderProService.java
 package kr.ac.kopo.mkj.bookmarket.service;
 
 import kr.ac.kopo.mkj.bookmarket.domain.Order;
 import kr.ac.kopo.mkj.bookmarket.repository.OrderProRepository;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 public class OrderProService {
-    private final OrderProRepository orderProRepository;
 
-    public void save(Order order){
-        orderProRepository.save(order); // ✅ 올바른 위임
+    @Autowired
+    private OrderProRepository orderProRepository;
+
+    public void save(Order order) {
+        orderProRepository.save(order);
+    }
+
+    public Page<Order> listAll(int pageNum, String sortField, String sortDir) {
+        int pageSize = 5;
+        Sort sort = sortDir.equals("asc")? Sort.by(sortField).ascending():Sort.by(sortField).descending();
+        Pageable pageable = PageRequest.of(pageNum-1, pageSize, sort);
+        return orderProRepository.findAll(pageable);
+    }
+
+    public Order get(Long id) {
+        return orderProRepository.findById(id).get();
+    }
+
+    public void delete(Long id) {
+        orderProRepository.deleteById(id);
+    }
+
+    public void deleteAll(){
+        orderProRepository.deleteAll();
     }
 }

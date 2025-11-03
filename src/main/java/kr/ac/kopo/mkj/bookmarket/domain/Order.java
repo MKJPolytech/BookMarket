@@ -14,6 +14,7 @@ public class Order {
     @Id
     @GeneratedValue
     private Long orderId;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id")
     private Customer customer;

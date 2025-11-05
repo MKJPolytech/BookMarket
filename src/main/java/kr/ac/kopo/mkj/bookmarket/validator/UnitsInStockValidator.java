@@ -8,7 +8,7 @@ import org.springframework.validation.Validator;
 public class UnitsInStockValidator implements Validator{
 
    public boolean supports(Class<?> clazz) { // Book 클래스의 유효성 검사 여부를 위한 메소드
-      return Book.class.isAssignableFrom(clazz);  
+      return Book.class.isAssignableFrom(clazz);//
    }
 
    public void validate(Object target, Errors errors) {  // Book 클래스의 유효성 검사 메소드

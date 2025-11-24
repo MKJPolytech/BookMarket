@@ -6,6 +6,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class WelcomeController {
+	@RequestMapping(value = "/")
+	public String welcome() {
+		return "welcome";
+	}
 
    @RequestMapping(value = "/home", method = RequestMethod.GET)
    public String welcomeMethod() {

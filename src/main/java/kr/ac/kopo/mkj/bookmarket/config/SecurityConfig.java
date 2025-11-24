@@ -5,12 +5,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 
@@ -23,9 +19,9 @@ public class SecurityConfig{
         return new BCryptPasswordEncoder();
     }
 	
-
+/*
 	@Bean
-	protected UserDetailsService users() {		
+	protected UserDetailsService users() {
 		UserDetails admin = User.builder()
 			.username("Admin")
 			.password(passwordEncoder().encode("Admin1234"))
@@ -33,7 +29,7 @@ public class SecurityConfig{
 			.build();
 		return new InMemoryUserDetailsManager(admin);
 	}
-	
+	*/
     @Bean
     protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {	
     	
@@ -53,7 +49,9 @@ public class SecurityConfig{
 		    
 		    .loginPage("/login") // 사용자 정의 로그인 페이지
 		    .loginProcessingUrl("/login")
-		    .defaultSuccessUrl("/books/add")// 로그인 성공 후 이동 페이지
+		    .defaultSuccessUrl("/books/add")// 관리자 로그인 성공 후 이동 페이지
+			.defaultSuccessUrl("/order/list")// 관리자 로그인 성공 후 이동 페이지
+			.defaultSuccessUrl("/")// 일반 사용자 로그인 성공 후 이동 페이지
 		    .failureUrl("/loginfailed") // 로그인 실패 후 이동 페이지
  			.usernameParameter("username")
  			.passwordParameter("password")

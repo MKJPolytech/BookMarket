@@ -1,0 +1,20 @@
+* [33m09b9d34[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mbackup/before-rebase[m[33m)[m 1103 2학기 BookMarket
+* [33mc336824[m 1103 2학기 BookMarket
+* [33m0faa73e[m 1017 2학기 BookMarket Ver02
+* [33m5df99b3[m 1017 2학기 BookMarket
+* [33m69239aa[m[33m ([m[1;33mtag: [m[1;33mBEFORE_BACK_TO_BOOKMARKET_20251017[m[33m)[m 0929 2학기 BookMarket 주문처리 1-entity, repository, service, view
+* [33mca6aa24[m Initial commit for 20251020Assignment
+* [33m367ba33[m 0929 2학기 BookMarket 주문처리 1-entity, repository, service, view
+* [33m3bdc2b0[m 0618 13장 13장 장바구니2 - 전체항목삭제
+* [33me693516[m 0618 13장 13장 장바구니2 - 전체항목삭제
+* [33m2685e4f[m 0618 13장 장바구니2 - 항목추가
+* [33mc5a7caa[m 0611 BookMarket 13장 장바구니1
+* [33m6fff238[m 0604 BookMarket 11장 예외처리적용(도서번호오류, 카테고리오류) 오류확인가능 ver02
+* [33m20bb09a[m 0604 BookMarket 11장 예외처리적용(도서번호오류, 카테고리오류)
+* [33m0c951b3[m 0528 BookMarket
+* [33m183b418[m 0521 BookMarket의 9장 유효성검사 4. Constraint Validator와 Validator가 함께 동작 가능하게 ver2
+* [33mdd65f64[m 0521 BookMarket의 9장 유효성검사 4. Constraint Validator와 Validator가 함께 동작 가능하게
+* [33mf0a8769[m BookMarket 0514 9장 Bean Validation Error Messages UTF-8
+* [33mac77a3e[m BookMarket 0507 7장 파일 업로드 및 다운로드
+* [33m64b3370[m BookMarket 0430 3교시 6장 카테고리와 출판사명이 필터링된 목록 + 도서 등록 페이지 완성
+* [33m70fe307[m BookMarket 0430 1교시
